@@ -17,7 +17,6 @@ export function AuthButtons() {
         provider,
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
-          scopes: provider === "kakao" ? "profile_nickname account_email talk_message" : undefined,
         },
       });
 
