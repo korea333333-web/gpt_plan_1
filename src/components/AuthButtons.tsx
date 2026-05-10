@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { authRedirectTo, getSupabaseClient } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 
 type Provider = "kakao" | "google";
 
@@ -16,7 +16,7 @@ export function AuthButtons() {
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: authRedirectTo,
+          redirectTo: window.location.origin,
           scopes: provider === "kakao" ? "profile_nickname account_email talk_message" : undefined,
         },
       });

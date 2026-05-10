@@ -11,6 +11,3 @@ export function getSupabaseClient() {
 
   return createClient<Database>(supabaseUrl, supabaseAnonKey);
 }
-
-export const authRedirectTo =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
