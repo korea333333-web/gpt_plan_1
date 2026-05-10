@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { UserRound } from "lucide-react";
 import { BottomNav } from "./BottomNav";
+import { AuthStatus } from "./AuthStatus";
 
 type AppShellProps = {
   children: ReactNode;
@@ -26,13 +25,7 @@ export function AppShell({ children, title = "달새김", eyebrow, action }: App
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {action}
-          <Link
-            href="/login"
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-soft border border-[var(--border-subtle)] bg-card px-3 text-sm font-semibold text-[var(--text-secondary)] transition hover:bg-[var(--bg-card-hover)] hover:text-gold"
-          >
-            <UserRound aria-hidden size={17} />
-            로그인
-          </Link>
+          <AuthStatus />
         </div>
       </header>
       {children}
