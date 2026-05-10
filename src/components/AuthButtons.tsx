@@ -16,7 +16,7 @@ export function AuthButtons() {
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: window.location.origin,
+          redirectTo: `${window.location.origin}/auth/callback`,
           scopes: provider === "kakao" ? "profile_nickname account_email talk_message" : undefined,
         },
       });
