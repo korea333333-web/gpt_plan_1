@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep: #0f1117;
+  --bg-card: #1a1c24;
+  --bg-card-hover: #22252e;
+  --bg-surface: #14161d;
+  --bg-input: #1e2029;
+  --text-primary: #f0ece4;
+  --text-secondary: #9b978f;
+  --text-tertiary: #6b6860;
+  --accent-gold: #c9a96e;
+  --accent-gold-dim: rgba(201, 169, 110, 0.15);
+  --accent-lunar: #8b9dc3;
+  --accent-lunar-dim: rgba(139, 157, 195, 0.12);
+  --accent-solar: #d4956b;
+  --accent-solar-dim: rgba(212, 149, 107, 0.12);
+  --accent-green: #7db88a;
+  --accent-red: #c97070;
+  --border-subtle: rgba(240, 236, 228, 0.08);
+  --background: var(--bg-deep);
+  --foreground: var(--text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #080a0f;
+}
+
+body {
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(201, 169, 110, 0.08), transparent 30%),
+    linear-gradient(180deg, #080a0f 0%, var(--bg-deep) 100%);
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
