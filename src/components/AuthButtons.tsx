@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getSupabaseClient } from "@/lib/supabase";
 
 type Provider = "kakao" | "google";
@@ -8,8 +8,23 @@ type Provider = "kakao" | "google";
 export function AuthButtons() {
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nextError = params.get("error");
+
+    if (nextError) {
+      setError(nextError);
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
+
   async function signIn(provider: Provider) {
     setError(null);
+
+    if (provider === "kakao") {
+      window.location.href = "/api/auth/kakao/start";
+      return;
+    }
 
     try {
       const supabase = getSupabaseClient();

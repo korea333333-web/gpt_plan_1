@@ -6,8 +6,17 @@ import { LogOut, UserRound } from "lucide-react";
 import type { Session } from "@supabase/supabase-js";
 import { getSupabaseClient } from "@/lib/supabase";
 
+type KakaoAuthSession = {
+  provider: "kakao";
+  id: string;
+  nickname: string;
+  profileImage?: string;
+  expiresAt: number;
+};
+
 export function AuthStatus() {
   const [session, setSession] = useState<Session | null>(null);
+  const [kakaoSession, setKakaoSession] = useState<KakaoAuthSession | null>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -22,6 +31,22 @@ export function AuthStatus() {
       setSession(data.session);
       setReady(true);
     });
+
+    fetch("/api/auth/kakao/session")
+      .then((response) => response.json() as Promise<{ session: KakaoAuthSession | null }>)
+      .then((data) => {
+        if (!mounted) {
+          return;
+        }
+
+        setKakaoSession(data.session);
+        setReady(true);
+      })
+      .catch(() => {
+        if (mounted) {
+          setReady(true);
+        }
+      });
 
     const {
       data: { subscription },
@@ -39,7 +64,9 @@ export function AuthStatus() {
   async function signOut() {
     const supabase = getSupabaseClient();
     await supabase.auth.signOut();
+    await fetch("/api/auth/kakao/logout", { method: "POST" });
     setSession(null);
+    setKakaoSession(null);
   }
 
   if (!ready) {
@@ -48,7 +75,7 @@ export function AuthStatus() {
     );
   }
 
-  if (!session) {
+  if (!session && !kakaoSession) {
     return (
       <Link
         href="/login"
@@ -61,9 +88,10 @@ export function AuthStatus() {
   }
 
   const label =
-    session.user.user_metadata?.name ??
-    session.user.user_metadata?.full_name ??
-    session.user.email ??
+    kakaoSession?.nickname ??
+    session?.user.user_metadata?.name ??
+    session?.user.user_metadata?.full_name ??
+    session?.user.email ??
     "내 계정";
 
   return (
