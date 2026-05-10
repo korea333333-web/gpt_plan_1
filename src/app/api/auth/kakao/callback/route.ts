@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
   const state = request.nextUrl.searchParams.get("state");
   const expectedState = request.cookies.get("dalsaegim_kakao_oauth_state")?.value;
-  const origin = request.nextUrl.origin;
+  const origin = getAppOrigin(request);
 
   if (!code || !state || !expectedState || state !== expectedState) {
     return redirectWithError(origin, "카카오 로그인 상태값이 맞지 않아요. 다시 시도해 주세요.");
@@ -124,4 +124,8 @@ function redirectWithError(origin: string, message: string) {
   const url = new URL("/login", origin);
   url.searchParams.set("error", message);
   return NextResponse.redirect(url);
+}
+
+function getAppOrigin(request: NextRequest): string {
+  return process.env.NEXT_PUBLIC_SITE_URL ?? request.nextUrl.origin;
 }

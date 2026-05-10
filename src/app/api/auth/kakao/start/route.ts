@@ -5,7 +5,7 @@ const kakaoAuthorizeUrl = "https://kauth.kakao.com/oauth/authorize";
 
 export function GET(request: NextRequest) {
   const clientId = process.env.KAKAO_REST_API_KEY;
-  const origin = request.nextUrl.origin;
+  const origin = getAppOrigin(request);
 
   if (!clientId) {
     const url = new URL("/login", origin);
@@ -32,4 +32,8 @@ export function GET(request: NextRequest) {
   });
 
   return response;
+}
+
+function getAppOrigin(request: NextRequest): string {
+  return process.env.NEXT_PUBLIC_SITE_URL ?? request.nextUrl.origin;
 }
