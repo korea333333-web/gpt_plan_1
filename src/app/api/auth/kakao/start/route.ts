@@ -21,6 +21,7 @@ export function GET(request: NextRequest) {
   authorizationUrl.searchParams.set("redirect_uri", redirectUri);
   authorizationUrl.searchParams.set("response_type", "code");
   authorizationUrl.searchParams.set("state", state);
+  authorizationUrl.searchParams.set("prompt", "select_account");
 
   const response = NextResponse.redirect(authorizationUrl);
   response.cookies.set("dalsaegim_kakao_oauth_state", state, {
