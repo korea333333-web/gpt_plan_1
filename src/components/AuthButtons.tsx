@@ -47,14 +47,14 @@ export function AuthButtons() {
     <div className="space-y-3">
       <button
         type="button"
-        className="h-12 w-full rounded-soft bg-[#FEE500] px-4 text-sm font-semibold text-[#191919] transition hover:brightness-95"
+        className="h-12 w-full rounded-soft bg-[#FEE500] px-4 text-sm font-semibold text-[#191919] shadow-[0_18px_42px_rgba(254,229,0,0.12)] transition hover:brightness-95"
         onClick={() => signIn("kakao")}
       >
         카카오로 로그인
       </button>
       <button
         type="button"
-        className="h-12 w-full rounded-soft border border-[var(--border-subtle)] bg-card px-4 text-sm font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg-card-hover)]"
+        className="h-12 w-full rounded-soft border border-[var(--border-subtle)] bg-card px-4 text-sm font-semibold text-[var(--text-primary)] shadow-[0_16px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl transition hover:bg-[var(--bg-card-hover)]"
         onClick={() => signIn("google")}
       >
         구글로 로그인

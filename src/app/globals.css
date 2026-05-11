@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --bg-deep: #0f1117;
-  --bg-card: #1a1c24;
-  --bg-card-hover: #22252e;
-  --bg-surface: #14161d;
-  --bg-input: #1e2029;
+  --bg-deep: #090b10;
+  --bg-card: rgba(27, 29, 38, 0.78);
+  --bg-card-hover: rgba(37, 40, 51, 0.88);
+  --bg-surface: rgba(18, 20, 28, 0.78);
+  --bg-input: rgba(30, 32, 41, 0.86);
   --text-primary: #f0ece4;
   --text-secondary: #9b978f;
   --text-tertiary: #6b6860;
@@ -34,11 +34,31 @@ html {
 
 body {
   color: var(--foreground);
-  background:
-    radial-gradient(circle at 20% 0%, rgba(201, 169, 110, 0.08), transparent 30%),
-    linear-gradient(180deg, #080a0f 0%, var(--bg-deep) 100%);
+  background: #080a0f;
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
   min-height: 100vh;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 15, 0.28) 0%, rgba(8, 10, 15, 0.74) 52%, #080a0f 100%),
+    linear-gradient(180deg, rgba(8, 10, 15, 0.08) 0%, #080a0f 88%),
+    url("/images/anniversary-system-bg.png") top center / min(1640px, 178vw) auto no-repeat;
+  content: "";
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 9%, rgba(201, 169, 110, 0.16), transparent 20rem),
+    linear-gradient(180deg, rgba(8, 10, 15, 0) 0%, rgba(8, 10, 15, 0.42) 45%, #080a0f 100%);
+  content: "";
 }
 
 a {

@@ -25,11 +25,12 @@ export function AnniversaryCard({
   const Icon = isLunar ? Moon : Sun;
 
   return (
-    <article className="relative overflow-hidden rounded-soft border border-[var(--border-subtle)] bg-card p-4 shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
+    <article className="group relative overflow-hidden rounded-soft border border-[var(--border-subtle)] bg-card p-4 shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl transition duration-200 hover:border-[rgba(201,169,110,0.28)] hover:bg-[var(--bg-card-hover)]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),transparent_44%,rgba(201,169,110,0.04))] opacity-70" />
       <div
         className={`absolute inset-y-0 left-0 w-1 ${isLunar ? "bg-lunar" : "bg-solar"}`}
       />
-      <div className="flex items-start justify-between gap-4">
+      <div className="relative flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="mb-3 flex items-center gap-2">
             <span
@@ -62,7 +63,7 @@ export function AnniversaryCard({
         </div>
         <div className="shrink-0 text-right">
           <p className="text-xs font-medium text-[var(--text-tertiary)]">D-Day</p>
-          <p className="mt-1 text-2xl font-semibold text-gold">
+          <p className="mt-1 text-2xl font-semibold text-gold drop-shadow-[0_0_18px_rgba(201,169,110,0.18)]">
             {dday === 0 ? "오늘" : `D-${dday}`}
           </p>
         </div>

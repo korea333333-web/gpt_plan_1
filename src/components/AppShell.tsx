@@ -11,7 +11,7 @@ type AppShellProps = {
 
 export function AppShell({ children, title = "달새김", eyebrow, action }: AppShellProps) {
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-5 pb-24 pt-7">
+    <main className="relative mx-auto min-h-screen w-full max-w-3xl px-5 pb-24 pt-7">
       <header className="mb-8 flex items-start justify-between gap-4">
         <div>
           {eyebrow ? (
@@ -19,7 +19,7 @@ export function AppShell({ children, title = "달새김", eyebrow, action }: App
               {eyebrow}
             </p>
           ) : null}
-          <h1 className="text-3xl font-semibold tracking-normal text-[var(--text-primary)]">
+          <h1 className="text-3xl font-semibold tracking-normal text-[var(--text-primary)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
             {title}
           </h1>
         </div>
